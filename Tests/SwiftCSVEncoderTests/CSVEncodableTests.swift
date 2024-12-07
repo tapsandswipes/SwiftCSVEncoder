@@ -61,6 +61,7 @@ final class CSVEncodableTests: XCTestCase {
     func testDateEncodesWithFormatter() {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         dateFormatter.dateFormat = "HH:mm:ss -- dd-MM-yyyy"
 
         let configuration = CSVEncoderConfiguration(dateEncodingStrategy: .formatted(dateFormatter))
