@@ -56,12 +56,12 @@ import Foundation
 */
 public struct CSVTable<Record> {
     /// A description of all the columns of the CSV file, order from left to right.
-    public private(set) var columns: [CSVColumn<Record>]
+    public let columns: [CSVColumn<Record>]
     /// The set of configuration parameters to use while encoding attributes and the whole file.
     ///
     /// The default configuration is ``CSVEncoderConfiguration/default``, which provides a date
     /// encoding strategy of ``CSVEncoderConfiguration/DateEncodingStrategy-swift.enum/iso8601``.
-    public private(set) var configuration: CSVEncoderConfiguration
+    public let configuration: CSVEncoderConfiguration
     
     /// Create a CSV table definition.
     /// - Parameters:

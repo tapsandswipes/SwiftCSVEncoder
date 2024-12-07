@@ -12,12 +12,12 @@ import Foundation
 /// Each column has a ``header`` which is output in the first row of the output CSV text file, and an ``attribute`` method which returns the data for that column.
 public struct CSVColumn<Record> {
     /// The header name to use for the column in the CSV file's first row.
-    public private(set) var header: String
+    public let header: String
     
     /// How to derive the column's contents for the given record.
     ///
     /// This closure must return a value which conforms to ``CSVEncodable``.
-    public private(set) var attribute: (Record) -> CSVEncodable
+    public let attribute: (Record) -> CSVEncodable
     
     /// Create a definition for a given column in a ``CSVTable``.
     ///

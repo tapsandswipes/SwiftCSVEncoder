@@ -10,16 +10,16 @@ import Foundation
 /// A set of decisions about how to encode data for a given ``CSVTable``.
 ///
 /// Currently this is covers strategies for encoding `Date` and `Bool` values.
-public struct CSVEncoderConfiguration {
+public struct CSVEncoderConfiguration: Sendable {
     /// The strategy to use when encoding dates.
     ///
     /// The default strategy is the ``DateEncodingStrategy-swift.enum/iso8601`` strategy.
-    public private(set) var dateEncodingStrategy: DateEncodingStrategy = .iso8601
+    public let dateEncodingStrategy: DateEncodingStrategy
     
     /// The strategy to use when encoding Boolean values.
     ///
     /// The default strategy is the ``BoolEncodingStrategy-swift.enum/trueFalse`` strategy.
-    public private(set) var boolEncodingStrategy: BoolEncodingStrategy = .trueFalse
+    public let boolEncodingStrategy: BoolEncodingStrategy
 
     /// Creates a new instance of ``CSVEncoderConfiguration`` with the requisite configuration values
     /// - Parameter dateEncodingStrategy: The strategy to use when encoding dates
@@ -33,7 +33,7 @@ public struct CSVEncoderConfiguration {
     }
     
     /// The strategy to use when encoding `Date` objects for CSV output.
-    public enum DateEncodingStrategy {
+    public enum DateEncodingStrategy: Sendable {
         /// The strategy that uses formatting from the `Date` structure.
         case deferredToDate
         /// The strategy that formats dates according to the ISO 8601 and RFC 3339 standards.
@@ -46,7 +46,7 @@ public struct CSVEncoderConfiguration {
     }
 
     /// The strategy to use when encoding `Bool` objects for CSV output.
-    public enum BoolEncodingStrategy {
+    public enum BoolEncodingStrategy: Sendable {
         /// The strategy that emits `true` and `false` for Boolean fields
         case trueFalse
         /// The strategy that emits `TRUE` and `FALSE` for Boolean fields
@@ -65,7 +65,7 @@ public struct CSVEncoderConfiguration {
     ///
     /// This configuration set will be used when a ``CSVTable`` is initialized with setting a custom
     /// configuration.
-    public static var `default`: CSVEncoderConfiguration = CSVEncoderConfiguration()
+    public static let `default`: CSVEncoderConfiguration = CSVEncoderConfiguration()
 }
 
 internal extension CSVEncoderConfiguration.BoolEncodingStrategy {
