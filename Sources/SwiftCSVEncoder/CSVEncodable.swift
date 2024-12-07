@@ -53,7 +53,7 @@ extension Date: CSVEncodable {
         case .deferredToDate:
             String(self.timeIntervalSinceReferenceDate)
         case .iso8601:
-            ISO8601DateFormatter().string(from: self)
+            self.formatted(.iso8601)
         case .formatted(let dateFormatter):
             dateFormatter.string(from: self)
         case .custom(let customFunc):
